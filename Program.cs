@@ -13,17 +13,17 @@ namespace Generic
             //////////////
             ///List
             //////////////
-            //var buffer = new CircularBuffer<double>(3);
+            //var buffer = new CircularBuffer<string>();
 
             //ProcessInput(buffer);
             //ProcessBuffer(buffer);
 
-            //var numbers = new List<int>();
+            //var numbers = new List<double>();
             //var capacity = -1;
 
-            //while(true)
+            //while (true)
             //{
-            //    if(numbers.Capacity!=capacity)
+            //    if (numbers.Capacity != capacity)
             //    {
             //        capacity = numbers.Capacity;
             //        Console.WriteLine(capacity);
@@ -32,6 +32,11 @@ namespace Generic
 
             //    numbers.Add(1);
             //}
+            //var employees = new List<Employee>();
+            //employees.Add(new Employee() { Name = "Alex" });
+            //employees.Add(new Employee() { Name = "Bob" });
+            //employees.Add(new Employee() { Name = "Peter" });
+            //Console.WriteLine(employees[0].Name);
             ////////////////////////
             ///List
             ////////////////////////
@@ -65,7 +70,9 @@ namespace Generic
             //line.Enqueue(new Employee { Name = "Alex" });
             //line.Enqueue(new Employee { Name = "Dani" });
             //line.Enqueue(new Employee { Name = "Chris" });
-            //while(line.Count >0)
+            //line.Enqueue(new Employee { Name = "Harirak" });
+            //line.Enqueue(new Employee { Name = "Harirak" });
+            //while (line.Count > 0)
             //{
             //    var employee = line.Dequeue();
             //    Console.WriteLine(employee.Name);
@@ -73,11 +80,37 @@ namespace Generic
             ///////////////////////////
             ///Queue end
             //////////////////////////
-
+            #endregion
+            #region Stack
             //////////////////////////
-            ///Stack
+            ///Stack FILO
             //////////////////////////
+            //var line = new Stack<List<Employee>>();
+            //line.Push(new List<Employee>() 
+            //    {
+            //    new Employee(){Name="Alex" },
+            //    new Employee(){Name="Meena"} 
+            //    });
+            //line.Push(new List<Employee>()
+            //    {
+            //    new Employee(){Name="Peter" },
+            //    new Employee(){Name="Robert"},
+            //    new Employee(){Name="Chris"}
+            //    });
 
+            //line.Push(new Employee { Name = "Dani" });
+            //line.Push(new Employee { Name = "Chris" });
+            //line.Push(new Employee { Name = "Harirak" });
+            //line.Push(new Employee { Name = "Harirak" });
+
+            //var employees = line.Pop[1];
+
+            //while (line.Count > 0)
+            //{
+            //    var employee = line.Pop();
+            //    Console.WriteLine(employee[line.Count].Name);
+
+            //}
             ///////////////////////////
             ///Stack end
             ///////////////////////////
@@ -90,18 +123,49 @@ namespace Generic
             //HashSet<Employee> set = new HashSet<Employee>();
             //Employee a = new Employee() { Name = "Alex", Ages = 40, DepartmentId = 1, Id = 1 };
             //Employee b = a;
+            //var c = b;
             //set.Add(a);
             //set.Add(b);
+            //set.Add(c);
 
-            //set.Add(new Employee() { Name = "Alex", Ages = 40, DepartmentId = 1, Id = 1 });
-            //set.Add(new Employee() { Name = "Alex", Ages = 40, DepartmentId = 1, Id = 1 });
-            //set.Add(new Employee() { Name = "Chris" });
+            //set.Add(new Employee());
+            //set.Add(new Employee());
+            //set.Add(new Employee());
 
-            //var set1 = new HashSet<Employee>() { new Employee { Name = "Peter" }, new Employee { Name = "Alex" } };
-            //var set2 = new HashSet<Employee>() { new Employee { Name = "Peter" }, new Employee { Name = "Alex" },new Employee { Name = "Chris" },new Employee { Name = "Marry" } };
+            //Employee setA1 = new Employee { Name = "Peter" };
+            //Employee setA2 = new Employee { Name = "Marry" };
 
-            //set1.SymmetricExceptWith(set2);
-            //Console.WriteLine(set1);
+
+            //var setA = new HashSet<Employee>()
+            //{   
+            //    setA1,setA2,setA1
+
+            //};
+
+            //Employee setB1 = new Employee { Name = "Peter" };
+            //Employee setB2 = new Employee { Name = "Marry" };
+            //Employee setB3 = new Employee { Name = "Alex" };
+            //Employee setB4 = new Employee { Name = "Meena" };
+            //var setB = new HashSet<Employee>() 
+            //{ 
+            //    setB1,setB2,setB3,setB4,setA1
+
+            //};
+
+
+
+            //setA.IntersectWith(setB);
+            //Employee[] employees = new Employee[10];
+            //setA.CopyTo(employees);
+
+            //for (int i = 0; i < employees.Length; i++)
+            //{
+            //    Console.WriteLine(employees[0].Name);
+
+            //}
+
+
+
             ////////////////////////////////////////////////////////////
             ///HashSet End
             ////////////////////////////////////////////////////////////
@@ -116,14 +180,14 @@ namespace Generic
             //lklist.AddFirst(3);
             //lklist.AddFirst(4);
             //lklist.AddLast(5);
-            //var first = lklist.First;
+            //var valueinLinkedList = lklist.First;
+            
+            //lklist.AddAfter(valueinLinkedList, 6);
 
-            //lklist.AddAfter(first, 6);
-
-            //lklist.AddBefore(first, 7);
+            //lklist.AddBefore(valueinLinkedList, 7);
 
             //var node = lklist.First;
-            //while(node!=null)
+            //while (node != null)
             //{
             //    Console.WriteLine(node.Value);
             //    node = node.Next;
@@ -137,6 +201,26 @@ namespace Generic
             //Console.WriteLine(list.First.Value);
 
             //list.Remove("there");
+
+            //var listEmployee = new LinkedList<List<Employee>>();
+            //listEmployee.AddFirst(new List<Employee> 
+            //{
+            //    new Employee{Name="Peter" },
+            //    new Employee{Name="Harirak"} 
+            //});
+            //listEmployee.AddFirst(new List<Employee>
+            //{
+            //    new Employee{Name="Marry" },
+            //    new Employee{Name="Robert"},
+            //    new Employee{Name="Meena"}
+            //});
+            //listEmployee.AddLast(new List<Employee>
+            //{
+            //    new Employee{Name="Chris" },
+            //    new Employee{Name="John"},
+            //    new Employee{Name="Bob"}
+            //});
+
             ////////////////////////////////////////////////////////////////
             ///LinkedList
             ///////////////////////////////////////////////////////////////
@@ -207,17 +291,18 @@ namespace Generic
             #endregion
 
 
-            #region CircularBuffer
-            var buffer = new CircularBuffer<double>(3);
-            ProcessInput(buffer);
-            ProcessBuffer(buffer);
+            #region AllBuffer
+            //var buffer = new CircularBuffer<string>();
+            //ProcessInput(buffer);
+            //ProcessBuffer(buffer);
             #endregion
 
         }
 
-        private static void ProcessBuffer(CircularBuffer<double> buffer)
+        private static void ProcessBuffer(CircularBuffer<string> buffer)
         {
-            var sum = 0.0;
+            //var sum = 0.0;
+            string sum="";
             Console.WriteLine("Buffer: ");
             while (!buffer.IsEmpty) //do it when true
             {
@@ -227,15 +312,15 @@ namespace Generic
             Console.WriteLine(sum); 
         }
 
-        private static void ProcessInput(CircularBuffer<double> buffer)
+        private static void ProcessInput(CircularBuffer<string> buffer)
         {
             while (true)
             {
                 var value = 0.0;
                 var input = Console.ReadLine();
-                if (double.TryParse(input, out value))
+                if (input!="q")/*double.TryParse(input, out value)*/
                 {
-                    buffer.Write(value);
+                    buffer.Write(input);
                     continue;
                 }
                 break;

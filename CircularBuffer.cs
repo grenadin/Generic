@@ -1,7 +1,8 @@
 ﻿namespace Generic
 {
-    class CircularBuffer<T>
+    class CircularBuffer<T> //: IBuffer<T>
     {
+
         T[] _buffer;
         int _start;
         int _end;
@@ -10,9 +11,9 @@
         public int Capacity { get => _buffer.Length; set => capacity = value; }
         public bool IsEmpty { get => _end == _start; }
         public bool IsFull { get => (_end + 1) % _buffer.Length == _start; }
-        public CircularBuffer() : this(10)
+        public CircularBuffer() : this(2)
         {
-            System.Console.WriteLine("hi");
+            //System.Console.WriteLine("hi");
         }
         public CircularBuffer(int capacity)
         {
@@ -41,4 +42,8 @@
             return result;
         }
     }
+   
+    
+
+
 }
