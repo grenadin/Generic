@@ -35,6 +35,26 @@ namespace Generic
             ////////////////////////
             ///List
             ////////////////////////
+
+            #endregion
+
+            #region SortedList
+            /////////////////////////////////////////////////////////////
+            ///SortedList
+            ////////////////////////////////////////////////////////////
+            //var list = new SortedList<int, string>();
+            //list.Add(3,"Three");
+            //list.Add(1, "One");
+            //list.Add(2, "Two");
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine(item.Value);
+            //}
+
+
+            /////////////////////////////////////////////////////////////
+            ///SortedList End
+            ////////////////////////////////////////////////////////////
             #endregion
 
             #region Queue
@@ -152,11 +172,40 @@ namespace Generic
             {
                 Console.WriteLine(item.Name);
             }
-           
+
             /////////////////////////////////////////////////////////////////////
             ///Dictionary
             ////////////////////////////////////////////////////////////////
             #endregion
+
+            #region SortedDictionary
+            ////////////////////////////////////////////////////////////////
+            ///SortedDictionary
+            ////////////////////////////////////////////////////////////////
+            var employeesByNameSort = new SortedDictionary<string, List<Employee>>();
+
+            employeesByNameSort.Add("Sales", new List<Employee> 
+            { 
+                new Employee(), 
+                new Employee(), 
+                new Employee() 
+            });
+
+            employeesByNameSort.Add("Engineer", new List<Employee>
+            {
+                new Employee(), 
+                new Employee()
+            });
+
+            foreach (var item in employeesByNameSort)
+            {
+                Console.WriteLine($"The count of Employees for {item.Key} is {item.Value.Count}");
+            }
+            ////////////////////////////////////////////////////////////////
+            ///SortedDictionary End
+            ////////////////////////////////////////////////////////////////
+            #endregion
+
         }
 
         private static void ProcessBuffer(CircularBuffer<double> buffer)
