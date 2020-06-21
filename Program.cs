@@ -147,31 +147,31 @@ namespace Generic
             ///Dictionary
             ///
 
-            var employeesByName = new Dictionary<string, List<Employee>>();
+            //var employeesByName = new Dictionary<string, List<Employee>>();
 
-            employeesByName.Add("H", new List<Employee>()
-                {
-                    new Employee { Name = "Harirak" } });
-            employeesByName.Add("A", new List<Employee>()
-                {
-                    new Employee { Name = "Alex" } });
-            employeesByName["H"].Add(new Employee { Name = "Harirak" });
+            //employeesByName.Add("H", new List<Employee>()
+            //    {
+            //        new Employee { Name = "Harirak" } });
+            //employeesByName.Add("A", new List<Employee>()
+            //    {
+            //        new Employee { Name = "Alex" } });
+            //employeesByName["H"].Add(new Employee { Name = "Harirak" });
 
 
 
-            var getValueName= employeesByName["H"];
-            foreach (var item in employeesByName)
-            {
-                foreach(var employee in item.Value)
-                {
-                    Console.WriteLine(employee.Name);
-                }
-            }
+            //var getValueName= employeesByName["H"];
+            //foreach (var item in employeesByName)
+            //{
+            //    foreach(var employee in item.Value)
+            //    {
+            //        Console.WriteLine(employee.Name);
+            //    }
+            //}
 
-            foreach (var item in getValueName)
-            {
-                Console.WriteLine(item.Name);
-            }
+            //foreach (var item in getValueName)
+            //{
+            //    Console.WriteLine(item.Name);
+            //}
 
             /////////////////////////////////////////////////////////////////////
             ///Dictionary
@@ -182,28 +182,35 @@ namespace Generic
             ////////////////////////////////////////////////////////////////
             ///SortedDictionary
             ////////////////////////////////////////////////////////////////
-            var employeesByNameSort = new SortedDictionary<string, List<Employee>>();
+            //var employeesByNameSort = new SortedDictionary<string, List<Employee>>();
 
-            employeesByNameSort.Add("Sales", new List<Employee> 
-            { 
-                new Employee(), 
-                new Employee(), 
-                new Employee() 
-            });
+            //employeesByNameSort.Add("Sales", new List<Employee> 
+            //{ 
+            //    new Employee(), 
+            //    new Employee(), 
+            //    new Employee() 
+            //});
 
-            employeesByNameSort.Add("Engineer", new List<Employee>
-            {
-                new Employee(), 
-                new Employee()
-            });
+            //employeesByNameSort.Add("Engineer", new List<Employee>
+            //{
+            //    new Employee(), 
+            //    new Employee()
+            //});
 
-            foreach (var item in employeesByNameSort)
-            {
-                Console.WriteLine($"The count of Employees for {item.Key} is {item.Value.Count}");
-            }
+            //foreach (var item in employeesByNameSort)
+            //{
+            //    Console.WriteLine($"The count of Employees for {item.Key} is {item.Value.Count}");
+            //}
             ////////////////////////////////////////////////////////////////
             ///SortedDictionary End
             ////////////////////////////////////////////////////////////////
+            #endregion
+
+
+            #region CircularBuffer
+            var buffer = new CircularBuffer<double>(3);
+            ProcessInput(buffer);
+            ProcessBuffer(buffer);
             #endregion
 
         }
@@ -215,6 +222,7 @@ namespace Generic
             while (!buffer.IsEmpty) //do it when true
             {
                 Console.WriteLine(buffer.Read());
+                sum += buffer.Read();
             }
             Console.WriteLine(sum); 
         }
