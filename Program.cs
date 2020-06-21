@@ -47,10 +47,10 @@ namespace Generic
             /////////////////////////////////////////////////////////////
             ///SortedList
             ////////////////////////////////////////////////////////////
-            //var list = new SortedList<int, string>();
-            //list.Add(3,"Three");
-            //list.Add(1, "One");
-            //list.Add(2, "Two");
+            //var list = new SortedList<int, Employee>();
+            //list.Add(3, new Employee { Name = "Harirak" });
+            //list.Add(1, new Employee { Name = "Peter" });
+            //list.Add(2, new Employee { Name = "Robert" });
             //foreach (var item in list)
             //{
             //    Console.WriteLine(item.Value);
@@ -181,7 +181,7 @@ namespace Generic
             //lklist.AddFirst(4);
             //lklist.AddLast(5);
             //var valueinLinkedList = lklist.First;
-            
+
             //lklist.AddAfter(valueinLinkedList, 6);
 
             //lklist.AddBefore(valueinLinkedList, 7);
@@ -234,24 +234,31 @@ namespace Generic
             //var employeesByName = new Dictionary<string, List<Employee>>();
 
             //employeesByName.Add("H", new List<Employee>()
-            //    {
-            //        new Employee { Name = "Harirak" } });
+            //{
+            //        new Employee { Name = "Harirak" },
+            //        new Employee { Name = "Hero" }
+            //});
+
             //employeesByName.Add("A", new List<Employee>()
-            //    {
-            //        new Employee { Name = "Alex" } });
-            //employeesByName["H"].Add(new Employee { Name = "Harirak" });
+            //{
+            //        new Employee { Name = "Alex" } 
+            //});
+
+            //employeesByName["H"].Add(new Employee { Name = "Horde" });
 
 
 
-            //var getValueName= employeesByName["H"];
+
             //foreach (var item in employeesByName)
             //{
-            //    foreach(var employee in item.Value)
+            //    foreach (var employee in item.Value)
             //    {
             //        Console.WriteLine(employee.Name);
             //    }
             //}
 
+            //var getValueName = employeesByName["H"];//employeesByName["key"]
+            //getValueName.Add(new Employee { Name = "Aum" });
             //foreach (var item in getValueName)
             //{
             //    Console.WriteLine(item.Name);
@@ -266,20 +273,25 @@ namespace Generic
             ////////////////////////////////////////////////////////////////
             ///SortedDictionary
             ////////////////////////////////////////////////////////////////
-            //var employeesByNameSort = new SortedDictionary<string, List<Employee>>();
+            ///
+            //var list = new SortedList<int, Employee>();
+            //list.Add(3, new Employee { Name = "Harirak" });
+            //list.Add(1, new Employee { Name = "Peter" });
+            //list.Add(2, new Employee { Name = "Robert" });
 
-            //employeesByNameSort.Add("Sales", new List<Employee> 
-            //{ 
-            //    new Employee(), 
-            //    new Employee(), 
-            //    new Employee() 
-            //});
+            //var employeesByNameSort = new SortedDictionary<string, SortedList<int,Employee>>();
 
-            //employeesByNameSort.Add("Engineer", new List<Employee>
-            //{
-            //    new Employee(), 
-            //    new Employee()
-            //});
+            //var slist = new SortedList<int, Employee>();
+
+            //slist.Add(1, new Employee { Name = "Harirak" });
+
+            //employeesByNameSort.Add("A",new SortedList<int, Employee>() {});
+
+            //employeesByNameSort.Add("B", slist);
+
+
+
+
 
             //foreach (var item in employeesByNameSort)
             //{
@@ -291,34 +303,37 @@ namespace Generic
             #endregion
 
 
+
             #region AllBuffer
             //var buffer = new CircularBuffer<string>();
-            //ProcessInput(buffer);
-            //ProcessBuffer(buffer);
+            var buffer = new QBuffer<string>();
+            ProcessInput(buffer);
+            ProcessBuffer(buffer);
             #endregion
 
         }
 
-        private static void ProcessBuffer(CircularBuffer<string> buffer)
+        private static void ProcessBuffer(IBuffer<string> buffer)
         {
             //var sum = 0.0;
-            string sum="";
+            string sum= "";
             Console.WriteLine("Buffer: ");
             while (!buffer.IsEmpty) //do it when true
             {
-                Console.WriteLine(buffer.Read());
+                
                 sum += buffer.Read();
+                Console.WriteLine(sum);
             }
             Console.WriteLine(sum); 
         }
 
-        private static void ProcessInput(CircularBuffer<string> buffer)
+        private static void ProcessInput(IBuffer<string> buffer)
         {
             while (true)
             {
                 var value = 0.0;
                 var input = Console.ReadLine();
-                if (input!="q")/*double.TryParse(input, out value)*/
+                if (input!="q")//double.TryParse(input, out value))
                 {
                     buffer.Write(input);
                     continue;

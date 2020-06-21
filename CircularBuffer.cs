@@ -1,6 +1,6 @@
 ﻿namespace Generic
 {
-    class CircularBuffer<T> //: IBuffer<T>
+    class CircularBuffer<T> : IBuffer<T>
     {
 
         T[] _buffer;
@@ -42,8 +42,12 @@
             return result;
         }
     }
+
+        
+        
    
-    
+
+
 
 
 }
