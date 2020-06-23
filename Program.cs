@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading;
@@ -231,7 +232,7 @@ namespace Generic
             ///Dictionary
             ///
 
-            //var employeesByName = new Dictionary<string, List<Employee>>();
+            //var  employeesByName = new Dictionary<string, List<Employee>>();
 
             //employeesByName.Add("H", new List<Employee>()
             //{
@@ -279,17 +280,14 @@ namespace Generic
             //list.Add(1, new Employee { Name = "Peter" });
             //list.Add(2, new Employee { Name = "Robert" });
 
-            //var employeesByNameSort = new SortedDictionary<string, SortedList<int,Employee>>();
+            //var employeesByNameSort = new SortedDictionary<string, SortedList<int, Employee>>();
 
             //var slist = new SortedList<int, Employee>();
 
             //slist.Add(1, new Employee { Name = "Harirak" });
 
-            //employeesByNameSort.Add("A",new SortedList<int, Employee>() {});
-
-            //employeesByNameSort.Add("B", slist);
-
-
+            //employeesByNameSort.Add("A", slist);
+            //employeesByNameSort.Add("B", new SortedList<int, Employee> { slist.Add(1, new Employee { Name = "Harirak" });
 
 
 
@@ -306,41 +304,78 @@ namespace Generic
 
             #region AllBuffer
             //var buffer = new CircularBuffer<string>();
-            var buffer = new QBuffer<string>();
-            ProcessInput(buffer);
-            ProcessBuffer(buffer);
+
+            //ProcessInput(buffer);
+            //foreach (var item in buffer)
+            //{
+            //    Console.WriteLine(item);
+
+
+            //}
+            //ProcessBuffer(buffer);
             #endregion
 
-        }
 
-        private static void ProcessBuffer(IBuffer<string> buffer)
-        {
-            //var sum = 0.0;
-            string sum= "";
-            Console.WriteLine("Buffer: ");
-            while (!buffer.IsEmpty) //do it when true
-            {
-                
-                sum += buffer.Read();
-                Console.WriteLine(sum);
-            }
-            Console.WriteLine(sum); 
-        }
 
-        private static void ProcessInput(IBuffer<string> buffer)
-        {
-            while (true)
+
+           
+            //var departments = new SortedDictionary<string, SortedSet<Employee>>();
+            var departments = new DepartmentCollection();
+
+                                  
+            departments.Add("Sales",new Employee() { Name = "Danni" })
+                       .Add("Sales",new Employee() { Name = "Bob" })
+                       .Add("Sales", new Employee() { Name = "Bobby" })
+                       .Add("Sales", new Employee() { Name = "Alex" })
+                       .Add("Sales",new Employee() { Name = "Alex" });
+
+
+
+            departments.Add("Engineering", new Employee() {Name="Meena" })
+                       .Add("Engineering",new Employee { Name = "Scott" })
+                       .Add("Engineering",new Employee { Name = "Alex" })
+                       .Add("Engineering",new Employee { Name = "Dani" });
+           
+
+
+
+            foreach (var department in departments)
             {
-                var value = 0.0;
-                var input = Console.ReadLine();
-                if (input!="q")//double.TryParse(input, out value))
+                Console.WriteLine(department.Key);
+                foreach (var employee in department.Value)
                 {
-                    buffer.Write(input);
-                    continue;
+                    Console.WriteLine($"\t{employee.Name}");
                 }
-                break;
             }
+
         }
+
+        //private static void ProcessBuffer(IBuffer<string> buffer)
+        //{
+        //    //var sum = 0.0;
+        //    string sum= "";
+        //    Console.WriteLine("Buffer: ");
+        //    while (!buffer.IsEmpty) //do it when true
+        //    {
+        //        Console.WriteLine(buffer.Read());
+        //    }
+            
+        //}
+
+        //private static void ProcessInput(IBuffer<string> buffer)
+        //{
+        //    while (true)
+        //    {
+        //        var value = 0.0;
+        //        var input = Console.ReadLine();
+        //        if (input!="q")//double.TryParse(input, out value))
+        //        {
+        //            buffer.Write(input);
+        //            continue;
+        //        }
+        //        break;
+        //    }
+        //}
 
     }
 }

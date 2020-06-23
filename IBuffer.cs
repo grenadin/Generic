@@ -1,6 +1,8 @@
-﻿namespace Generic
+﻿using System.Collections.Generic;
+
+namespace Generic
 {
-    interface IBuffer<T>
+    interface IBuffer<T>:IEnumerable<T>
     {
         bool IsEmpty { get; }
 
