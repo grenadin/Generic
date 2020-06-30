@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
+using System.Globalization;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading;
 namespace Generic
 {
+    
     class Program
     {
         static void Main()
@@ -303,79 +306,108 @@ namespace Generic
 
 
             #region AllBuffer
-            //var buffer = new CircularBuffer<string>();
 
-            //ProcessInput(buffer);
-            //foreach (var item in buffer)
+            var buffer = new CircularBuffer<double>(capacity:3);
+
+            buffer.ItemDiscarded += ItemDiscarded;
+            ProcessInput(buffer);
+            
+            //var asDate = buffer.Map(a => new DateTime(2020, 1, 1).AddDays(a));
+
+            //foreach (var date in asDate)
             //{
-            //    Console.WriteLine(item);
-
+            //    Console.WriteLine(date);
 
             //}
-            //ProcessBuffer(buffer);
+
+            //Printer<double> del = new Printer<double>(ConsoleWrite);
+
+            //Action<bool> print = d => Console.WriteLine(d);
+            //Func<double, double> sq = (d) => (d * d);
+            //Func<double, double, double> add = (x, y) => (x + y);
+            //Predicate<double> islessThanTen = (d) => d < 10;
+
+            //print(islessThanTen(sq(add(3, 5))));
+
+            buffer.Dump(d => Console.WriteLine(d));
+
+            
+            
+            ProcessBuffer(buffer);
+          
             #endregion
 
-
-
-
-           
+            #region Chainning
             //var departments = new SortedDictionary<string, SortedSet<Employee>>();
-            var departments = new DepartmentCollection();
-
-                                  
-            departments.Add("Sales",new Employee() { Name = "Danni" })
-                       .Add("Sales",new Employee() { Name = "Bob" })
-                       .Add("Sales", new Employee() { Name = "Bobby" })
-                       .Add("Sales", new Employee() { Name = "Alex" })
-                       .Add("Sales",new Employee() { Name = "Alex" });
+            //var departments = new DepartmentCollection();
 
 
-
-            departments.Add("Engineering", new Employee() {Name="Meena" })
-                       .Add("Engineering",new Employee { Name = "Scott" })
-                       .Add("Engineering",new Employee { Name = "Alex" })
-                       .Add("Engineering",new Employee { Name = "Dani" });
-           
+            //departments.Add("Sales", new Employee() { Name = "Danni" })
+            //           .Add("Sales", new Employee() { Name = "Bob" })
+            //           .Add("Sales", new Employee() { Name = "Bobby" })
+            //           .Add("Sales", new Employee() { Name = "Alex" })
+            //           .Add("Sales", new Employee() { Name = "Alex" });
+                       
+                      
 
 
 
-            foreach (var department in departments)
+
+
+            //departments.Add("Engineering", new Employee() { Name = "Meena" })
+            //           .Add("Engineering", new Employee { Name = "Scott" })
+            //           .Add("Engineering", new Employee { Name = "Alex" })
+            //           .Add("Engineering", new Employee { Name = "Dani" });
+
+
+
+
+            //foreach (var department in departments)
+            //{
+            //    Console.WriteLine(department.Key);
+            //    foreach (var employee in department.Value)
+            //    {
+            //        Console.WriteLine($"\t{employee.Name}");
+            //    }
+            //}
+
+            #endregion
+
+        }
+
+        private static void ItemDiscarded(object sender, 
+            ItemDiscardedEventArgs<double> e)
+        {
+            Console.WriteLine($"Buffer full. Discarding {e.ItemDiscarded} New Item is {e.NewItem}");
+        }
+
+        private static void ProcessBuffer(IBuffer<double> buffer)
+        {
+            //var sum = 0.0;
+            string sum = "";
+            Console.WriteLine("Buffer: ");
+            
+            while (!buffer.IsEmpty) //do it when true
             {
-                Console.WriteLine(department.Key);
-                foreach (var employee in department.Value)
-                {
-                    Console.WriteLine($"\t{employee.Name}");
-                }
+                Console.WriteLine(buffer.Read());
             }
 
         }
 
-        //private static void ProcessBuffer(IBuffer<string> buffer)
-        //{
-        //    //var sum = 0.0;
-        //    string sum= "";
-        //    Console.WriteLine("Buffer: ");
-        //    while (!buffer.IsEmpty) //do it when true
-        //    {
-        //        Console.WriteLine(buffer.Read());
-        //    }
-            
-        //}
-
-        //private static void ProcessInput(IBuffer<string> buffer)
-        //{
-        //    while (true)
-        //    {
-        //        var value = 0.0;
-        //        var input = Console.ReadLine();
-        //        if (input!="q")//double.TryParse(input, out value))
-        //        {
-        //            buffer.Write(input);
-        //            continue;
-        //        }
-        //        break;
-        //    }
-        //}
+        private static void ProcessInput(IBuffer<double> buffer)
+        {
+            while (true)
+            {
+                var value = 0.0;
+                var input = Console.ReadLine();
+                if (double.TryParse(input, out value))// //input != "q"
+                {
+                    buffer.Write(value);
+                    continue;
+                }
+                break;
+            }
+        }
 
     }
 }

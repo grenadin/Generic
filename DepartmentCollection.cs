@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 namespace Generic
 {
     public class DepartmentCollection : SortedDictionary<string,SortedSet<Employee>>
@@ -13,5 +14,7 @@ namespace Generic
             this[departmentName].Add(employee);
             return this;
         }
+
+       
     }
 }

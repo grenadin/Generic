@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
-
+using System.Collections;
 namespace Generic
 {
-    interface IBuffer<T>:IEnumerable<T>
+    public interface IBuffer<T>:IEnumerable<T>
     {
         bool IsEmpty { get; }
-
-        T Read();
         void Write(T value);
+        T Read();
+
+        //public IEnumerable<TOutput> MethodOut<TOutput>();
+       
+
     }
 }
